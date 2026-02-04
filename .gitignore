@@ -1,0 +1,57 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# =========================
+# Virtual Environment
+# =========================
+venv/
+.env/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Data (RAW & PROCESSED)
+# =========================
+data/raw/
+data/processed/
+*.npy
+*.npz
+*.pkl
+
+# =========================
+# ML Models (Very Large)
+# =========================
+outputs/models/
+*.h5
+*.pb
+variables/
+assets/
+
+# =========================
+# TensorFlow / Keras Cache
+# =========================
+.saved_model/
+.checkpoints/
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+
+# # =========================
+# # Allow specific outputs
+# # =========================
+# !outputs/figures/
+# !outputs/figures/*.png
+# !outputs/figures/*.jpg

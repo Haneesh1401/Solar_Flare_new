@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Flare Forecasting Dashboard</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS (must load first) -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- ================= SIDEBAR ================= -->
+    <nav class="sidebar">
+        <div class="logo">
+            <i data-lucide="zap" class="icon-gold"></i>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active" title="Dashboard"><i data-lucide="layout-dashboard"></i></a>
+            <a href="#" title="Telemetry"><i data-lucide="activity"></i></a>
+            <a href="#" title="Alerts"><i data-lucide="shield-alert"></i></a>
+            <a href="#" title="Settings"><i data-lucide="settings"></i></a>
+        </div>
+    </nav>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="main-content">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-info">
+                <h1>SOLAR FLARE <span class="highlight">FORECASTING</span></h1>
+                <p class="subtitle">
+                    AI-driven Space Weather Monitoring • MIL-Attention
+                </p>
+            </div>
+
+            <div class="system-status">
+                <span class="pulse-dot"></span>
+                SYSTEM LIVE
+                <span class="utc-time" id="utcTime">UTC --:--</span>
+            </div>
+        </header>
+
+        <!-- ================= HERO SECTION ================= -->
+        <div class="hero-container">
+
+            <!-- Solar Dynamics -->
+            <section class="panel simulation glass hero-panel">
+                <div class="panel-header">
+                    <i data-lucide="sun"></i>
+                    <h2>Solar Dynamics (Live Telemetry)</h2>
+                </div>
+
+                <div id="solar-canvas-container">
+                    <canvas id="solarCanvas"></canvas>
+                    <div class="scanline"></div>
+
+                    <div class="overlay-data top-left">
+                        MAG: <span id="magField">--</span> G
+                    </div>
+                    <div class="overlay-data bottom-right">
+                        TEMP: <span id="solarTemp">--</span> K
+                    </div>
+                    <div class="overlay-coords" id="solarCoords">
+                        LAT: -- | LONG: --
+                    </div>
+                </div>
+            </section>
+
+            <!-- Satellite Tracking -->
+            <section class="panel satellites glass hero-panel">
+                <div class="panel-header">
+                    <i data-lucide="satellite"></i>
+                    <h2>Orbital Asset Tracking</h2>
+                </div>
+
+                <div id="satellite-zone">
+                    <canvas id="spaceCanvas"></canvas>
+                    <div class="overlay-data top-right">
+                        ASSETS: <span id="assetCount">--</span>
+                    </div>
+                    <div class="orbital-rings-bg"></div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ================= ANALYTICS GRID ================= -->
+        <main class="grid-container footer-stats">
+
+            <!-- ML Risk Analysis -->
+            <section class="panel prediction glass">
+                <div class="panel-header">
+                    <i data-lucide="cpu"></i>
+                    <h2>ML Risk Analysis</h2>
+                </div>
+
+                <div class="prediction-content">
+
+                    <!-- Risk Meter -->
+                    <div class="risk-meter">
+                        <svg viewBox="0 0 100 50">
+                            <path d="M 10 50 A 40 40 0 0 1 90 50"
+                                  fill="none" stroke="#222" stroke-width="8"/>
+                            <path id="risk-arc"
+                                  d="M 10 50 A 40 40 0 0 1 10 50"
+                                  fill="none" stroke="cyan" stroke-width="8"/>
+                        </svg>
+
+                        <div class="risk-value">
+                            <span id="risk-percent">--%</span>
+                            <p id="risk-label">WAITING</p>
+                        </div>
+                    </div>
+
+                    <!-- ML Stats -->
+                    <div class="stats-mini">
+                        <div class="stat-item">
+                            <span>Raw Risk</span>
+                            <strong id="rawRisk">--</strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>Calibrated Risk</span>
+                            <strong id="calibratedRisk">--</strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>Latency</span>
+                            <strong id="latency">-- ms</strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>OOD Status</span>
+                            <strong id="oodStatus">UNKNOWN</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alerts & Logs -->
+            <section class="panel alert glass">
+                <div class="panel-header">
+                    <i data-lucide="bell"></i>
+                    <h2>System Logs</h2>
+                </div>
+
+                <div id="alert-box" class="alert-low">
+                    <!-- Logs injected via dashboard.js -->
+                </div>
+            </section>
+
+            <!-- Model Metadata -->
+            <section class="panel model-info glass">
+                <div class="panel-header">
+                    <i data-lucide="database"></i>
+                    <h2>Model Metadata</h2>
+                </div>
+
+                <div class="model-meta">
+                    <div><span>Model</span><strong>MIL-Attention</strong></div>
+                    <div><span>Aggregation</span><strong>90th Percentile</strong></div>
+                    <div><span>Calibration</span><strong>Temperature Scaling</strong></div>
+                    <div><span>Backend</span><strong>FastAPI</strong></div>
+                </div>
+            </section>
+
+            <!-- Risk Trend -->
+            <section class="panel trend glass">
+                <div class="panel-header">
+                    <i data-lucide="line-chart"></i>
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Risk Trend</h2>
+                </div>
+
+                <div class="panel-content">
+                    <canvas id="riskTrendCanvas" width="300" height="150"></canvas>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+</div>
+
+<!-- ================= SCRIPTS (must be last) ================= -->
+<script>lucide.createIcons();</script>
+<script src="dashboard.js"></script>
+<script src="animations.js"></script>
+
+</body>
+</html>
